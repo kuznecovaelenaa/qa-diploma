@@ -27,7 +27,7 @@ public class PaymentPage {
     private SelenideElement approvedAnswer = $(byText("Операция одобрена Банком.")).parent().$(".notification__icon");
     private SelenideElement declinedAnswer = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$(".notification__icon");
 
-    public void validPayment(DataHelper.AuthInfo info) {
+    public void fillPaymentForm(DataHelper.AuthInfo info) {
         cardNumberField.setValue(info.getCardNumber());
         cardMonthField.setValue(info.getCardMonth());
         cardYearField.setValue(info.getCardYear());
@@ -81,11 +81,11 @@ public class PaymentPage {
         cardCVCFieldError.shouldBe(Condition.visible);
     }
 
-    public void approved() {
+    public void checkOperationIsSuccessful() {
         approvedAnswer.shouldBe(Condition.visible,ofSeconds(15));
     }
 
-    public void declined() {
+    public void checkOperationIsNotSuccessful() {
         declinedAnswer.shouldBe(Condition.visible,ofSeconds(15));
     }
 }

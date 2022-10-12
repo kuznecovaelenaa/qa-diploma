@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.page.CreditPage;
 import ru.netology.page.MainPage;
+import ru.netology.page.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -15,32 +16,32 @@ public class CreditTest {
     }
 
     @Test
-    void test18_fillCreditFormCard1() {
+    void test19_shouldFillCreditFormCard1() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
         var authInfo = DataHelper.getAuthInfoAllValidApproved();
-        creditPage.validPayment(authInfo);
-        creditPage.approved();
+        creditPage.fillPaymentForm(authInfo);
+        creditPage.checkOperationIsSuccessful();
     }
 
-    @Test //баг
-    void test19_fillCreditFormCard2() {
+    @Test
+    void test20_shouldFillCreditFormCard2() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
         var authInfo = DataHelper.getAuthInfoAllValidDeclined();
-        creditPage.validPayment(authInfo);
-        creditPage.declined();
+        creditPage.fillPaymentForm(authInfo);
+        creditPage.checkOperationIsNotSuccessful();
     }
 
     @Test
-    void test20_notFillCreditForm() {
+    void test21_shouldNotFillCreditForm() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
         var authInfo = DataHelper.getAuthInfoNoData();
-        creditPage.validPayment(authInfo);
+        creditPage.fillPaymentForm(authInfo);
         creditPage.cardNumberError();
         creditPage.cardMonthError();
         creditPage.cardYearError();
@@ -48,8 +49,8 @@ public class CreditTest {
         creditPage.cardCVCError();
     }
 
-    @Test //баг?
-    void test21_fillCreditFormNotValidCardNumber() {
+    @Test
+    void test22_shouldFillCreditFormNotValidCardNumber() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid();
@@ -59,11 +60,11 @@ public class CreditTest {
         var cardCVC =DataHelper.getCardCVC();
         var creditPage = new CreditPage();
         creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
-        creditPage.declined();
+        creditPage.checkOperationIsNotSuccessful();
     }
 
     @Test
-    void test22_fillCreditFormNotValidCardNumber15() {
+    void test23_shouldFillCreditFormNotValidCardNumber15() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid15();
@@ -76,8 +77,8 @@ public class CreditTest {
         creditPage.cardNumberError();
     }
 
-    @Test //баг?
-    void test23_fillCreditFormNotValidCardNumber17() {
+    @Test
+    void test24_shouldFillCreditFormNotValidCardNumber17() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid17();
@@ -87,11 +88,26 @@ public class CreditTest {
         var cardCVC =DataHelper.getCardCVC();
         var creditPage = new CreditPage();
         creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
-        creditPage.declined();
+        creditPage.checkOperationIsNotSuccessful();
     }
 
     @Test
-    void test24_fillCreditFormNotValidFormatCardMonth() {
+    void test25_shouldNotBeHiddenNotificationOnPageCredit() {
+        var mainPage = new MainPage();
+        mainPage.buyCredit();
+        var cardNumber = DataHelper.getCardNumberNotValid();
+        var cardMonth =DataHelper.getCardMonth();
+        var cardYear =DataHelper.getCardNextYear();
+        var cardHolder =DataHelper.getCardHolder();
+        var cardCVC =DataHelper.getCardCVC();
+        var creditPage = new CreditPage();
+        creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
+        creditPage.checkOperationIsNotSuccessful();
+        creditPage.checkOperationIsSuccessful();
+    }
+
+    @Test
+    void test26_shouldFillCreditFormNotValidFormatCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -105,7 +121,7 @@ public class CreditTest {
     }
 
     @Test
-    void test25_fillCreditFormNotValidCardMonth() {
+    void test27_shouldFillCreditFormNotValidCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -119,7 +135,7 @@ public class CreditTest {
     }
 
     @Test
-    void test26_fillCreditFormNotValidCardYear() {
+    void test28_shouldFillCreditFormNotValidCardYear() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -133,17 +149,17 @@ public class CreditTest {
     }
 
     @Test
-    void test27_fillCreditFormPreviousMonthCurrentYear() {
+    void test29_shouldFillCreditFormPreviousMonthCurrentYear() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
         var authInfo = DataHelper.getAuthInfoMonthYear();
-        creditPage.validPayment(authInfo);
+        creditPage.fillPaymentForm(authInfo);
         creditPage.cardMonthError2();
     }
 
     @Test
-    void test28_fillCreditFormNotValidCardYear2() {
+    void test30_shouldFillCreditFormNotValidCardYear2() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -156,8 +172,8 @@ public class CreditTest {
         creditPage.cardYearError3();
     }
 
-    @Test //баг
-    void test29_fillCreditFormNotValidCyrillicCardHolder() {
+    @Test
+    void test31_shouldFillCreditFormNotValidCyrillicCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -167,12 +183,11 @@ public class CreditTest {
         var cardCVC =DataHelper.getCardCVC();
         var creditPage = new CreditPage();
         creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
-        //я вставила ошибку "Неверный формат", но ее нет на странице
         creditPage.cardHolderError2();
     }
 
-    @Test //баг
-    void test30_fillCreditFormNotValidLatinCardHolder() {
+    @Test
+    void test32_shouldFillCreditFormNotValidLatinCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -182,12 +197,11 @@ public class CreditTest {
         var cardCVC =DataHelper.getCardCVC();
         var creditPage = new CreditPage();
         creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
-        //я вставила ошибку "Неверный формат", но ее нет на странице
         creditPage.cardHolderError2();
     }
 
-    @Test //баг
-    void test31_fillCreditFormNotValidNumbersCardHolder() {
+    @Test
+    void test33_shouldFillCreditFormNotValidNumbersCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -197,12 +211,11 @@ public class CreditTest {
         var cardCVC =DataHelper.getCardCVC();
         var creditPage = new CreditPage();
         creditPage.differentValuesPayment(cardNumber, cardMonth, cardYear,cardHolder, cardCVC);
-        //я вставила ошибку "Неверный формат", но ее нет на странице
         creditPage.cardHolderError2();
     }
 
     @Test
-    void test32_fillCreditFormNotValidCardCVC() {
+    void test34_shouldFillCreditFormNotValidCardCVC() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
