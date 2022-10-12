@@ -15,7 +15,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test3_shouldValidCard1Payment() {
+    void test3_fillPaymentFormCard1() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var paymentPage = new PaymentPage();
@@ -25,7 +25,7 @@ public class PaymentTest {
     }
 
     @Test //баг
-    void test4_shouldValidCard2Payment() {
+    void test4_fillPaymentFormCard2() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var paymentPage = new PaymentPage();
@@ -35,7 +35,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test5_shouldNoDataPayment() {
+    void test5_notFillPaymentForm() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var paymentPage = new PaymentPage();
@@ -49,7 +49,7 @@ public class PaymentTest {
     }
 
     @Test //баг?
-    void test6_shouldCardNumberNotValidPayment() {
+    void test6_fillPaymentFormNotValidCardNumber() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumberNotValid();
@@ -63,7 +63,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test7_shouldCardNumberNotValid15Payment() {
+    void test7_fillPaymentFormNotValidCardNumber15() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumberNotValid15();
@@ -77,7 +77,7 @@ public class PaymentTest {
     }
 
     @Test //баг?
-    void test8_shouldCardNumberNotValid17Payment() {
+    void test8_fillPaymentFormNotValidCardNumber17() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumberNotValid17();
@@ -91,7 +91,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test9_shouldCardMonthNotValidFormatPayment() {
+    void test9_fillPaymentFormNotValidFormatCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -105,7 +105,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test10_shouldCardMonthNotValidPayment() {
+    void test10_fillPaymentFormNotValidCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -119,7 +119,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test11_shouldCardYearNotValid1Payment() {
+    void test11_fillPaymentFormNotValidCardYear() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -133,7 +133,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test12_shouldCardPreviousMonthCurrentYearPayment() {
+    void test12_fillPaymentFormPreviousMonthCurrentYear() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var paymentPage = new PaymentPage();
@@ -143,7 +143,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test13_shouldCardYearNotValid2Payment() {
+    void test13_fillPaymentFormNotValidCardYear2() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -157,7 +157,7 @@ public class PaymentTest {
     }
 
     @Test //баг
-    void test14_shouldCardHolderNotValidCyrillicPayment() {
+    void test14_fillPaymentFormNotValidCyrillicCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -172,7 +172,7 @@ public class PaymentTest {
     }
 
     @Test //баг
-    void test15_shouldCardHolderNotValidLatinPayment() {
+    void test15_fillPaymentFormNotValidLatinCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -187,7 +187,7 @@ public class PaymentTest {
     }
 
     @Test //баг
-    void test16_shouldCardHolderNotValidNumbersPayment() {
+    void test16_fillPaymentFormNotValidNumbersCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();
@@ -202,7 +202,7 @@ public class PaymentTest {
     }
 
     @Test
-    void test17_shouldCardCVCNotValidPayment() {
+    void test17_fillPaymentFormNotValidCardCVC() {
         var mainPage = new MainPage();
         mainPage.buyPayment();
         var cardNumber = DataHelper.getCardNumber1();

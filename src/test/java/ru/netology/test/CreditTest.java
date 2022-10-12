@@ -15,7 +15,7 @@ public class CreditTest {
     }
 
     @Test
-    void test18_shouldValidCard1Credit() {
+    void test18_fillCreditFormCard1() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
@@ -25,7 +25,7 @@ public class CreditTest {
     }
 
     @Test //баг
-    void test19_shouldValidCard2Credit() {
+    void test19_fillCreditFormCard2() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
@@ -35,7 +35,7 @@ public class CreditTest {
     }
 
     @Test
-    void test20_shouldNoDataCredit() {
+    void test20_notFillCreditForm() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
@@ -49,7 +49,7 @@ public class CreditTest {
     }
 
     @Test //баг?
-    void test21_shouldCardNumberNotValidCredit() {
+    void test21_fillCreditFormNotValidCardNumber() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid();
@@ -63,7 +63,7 @@ public class CreditTest {
     }
 
     @Test
-    void test22_shouldCardNumberNotValid15Credit() {
+    void test22_fillCreditFormNotValidCardNumber15() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid15();
@@ -77,7 +77,7 @@ public class CreditTest {
     }
 
     @Test //баг?
-    void test23_shouldCardNumberNotValid17Credit() {
+    void test23_fillCreditFormNotValidCardNumber17() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumberNotValid17();
@@ -91,7 +91,7 @@ public class CreditTest {
     }
 
     @Test
-    void test24_shouldCardMonthNotValidFormatCredit() {
+    void test24_fillCreditFormNotValidFormatCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -105,7 +105,7 @@ public class CreditTest {
     }
 
     @Test
-    void test25_shouldCardMonthNotValidCredit() {
+    void test25_fillCreditFormNotValidCardMonth() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -119,7 +119,7 @@ public class CreditTest {
     }
 
     @Test
-    void test26_shouldCardYearNotValid1Credit() {
+    void test26_fillCreditFormNotValidCardYear() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -133,7 +133,7 @@ public class CreditTest {
     }
 
     @Test
-    void test27_shouldCardPreviousMonthCurrentYearCredit() {
+    void test27_fillCreditFormPreviousMonthCurrentYear() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var creditPage = new CreditPage();
@@ -143,7 +143,7 @@ public class CreditTest {
     }
 
     @Test
-    void test28_shouldCardYearNotValid2Credit() {
+    void test28_fillCreditFormNotValidCardYear2() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -157,7 +157,7 @@ public class CreditTest {
     }
 
     @Test //баг
-    void test29_shouldCardHolderNotValidCyrillicCredit() {
+    void test29_fillCreditFormNotValidCyrillicCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -172,7 +172,7 @@ public class CreditTest {
     }
 
     @Test //баг
-    void test30_shouldCardHolderNotValidLatinCredit() {
+    void test30_fillCreditFormNotValidLatinCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -187,7 +187,7 @@ public class CreditTest {
     }
 
     @Test //баг
-    void test31_shouldCardHolderNotValidNumbersCredit() {
+    void test31_fillCreditFormNotValidNumbersCardHolder() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
@@ -202,7 +202,7 @@ public class CreditTest {
     }
 
     @Test
-    void test32_shouldCardCVCNotValidCredit() {
+    void test32_fillCreditFormNotValidCardCVC() {
         var mainPage = new MainPage();
         mainPage.buyCredit();
         var cardNumber = DataHelper.getCardNumber1();
