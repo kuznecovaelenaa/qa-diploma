@@ -62,4 +62,4 @@
 34. Ввод данных с невалидными значениями (1 или 2 символа) в поле 'CVC/CVV'
 
 * Неправильное название города - `баг` [Issues11](https://github.com/kuznecovaelenaa/qa-diploma/issues/11)
-* Неправильное название города - `баг` [Issues12](https://github.com/kuznecovaelenaa/qa-diploma/issues/12)
+* Выделена не та кнопка - `баг` [Issues12](https://github.com/kuznecovaelenaa/qa-diploma/issues/12)
