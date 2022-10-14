@@ -1,18 +1,25 @@
 package ru.netology.test;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.data.DBHelper;
 import ru.netology.data.DataHelper;
 import ru.netology.page.CreditPage;
 import ru.netology.page.MainPage;
-import ru.netology.page.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditTest {
     @BeforeEach
     void openPage() {
         open("http://localhost:8080");
+    }
+
+    @AfterAll
+    static void clearTables() {
+        DBHelper.clearTables();
     }
 
     @Test
@@ -23,6 +30,7 @@ public class CreditTest {
         var authInfo = DataHelper.getAuthInfoAllValidApproved();
         creditPage.fillPaymentForm(authInfo);
         creditPage.checkOperationIsSuccessful();
+        assertEquals("APPROVED", DBHelper.getStatusCredit());
     }
 
     @Test
@@ -33,6 +41,7 @@ public class CreditTest {
         var authInfo = DataHelper.getAuthInfoAllValidDeclined();
         creditPage.fillPaymentForm(authInfo);
         creditPage.checkOperationIsNotSuccessful();
+        assertEquals("DECLINED", DBHelper.getStatusCredit());
     }
 
     @Test

@@ -1,17 +1,25 @@
 package ru.netology.test;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.data.DBHelper;
 import ru.netology.data.DataHelper;
 import ru.netology.page.MainPage;
 import ru.netology.page.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentTest {
     @BeforeEach
     void openPage() {
         open("http://localhost:8080");
+    }
+
+    @AfterAll
+    static void clearTables() {
+        DBHelper.clearTables();
     }
 
     @Test
@@ -22,6 +30,7 @@ public class PaymentTest {
         var authInfo = DataHelper.getAuthInfoAllValidApproved();
         paymentPage.fillPaymentForm(authInfo);
         paymentPage.checkOperationIsSuccessful();
+        assertEquals("APPROVED", DBHelper.getStatusPayment());
     }
 
     @Test
@@ -32,6 +41,7 @@ public class PaymentTest {
         var authInfo = DataHelper.getAuthInfoAllValidDeclined();
         paymentPage.fillPaymentForm(authInfo);
         paymentPage.checkOperationIsNotSuccessful();
+        assertEquals("DECLINED", DBHelper.getStatusPayment());
     }
 
     @Test
